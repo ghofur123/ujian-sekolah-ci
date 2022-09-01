@@ -1,0 +1,40 @@
+					
+					SELECT
+					  a.`nama_ujian`,
+					  b.`nama_kelas`,
+					  a.`token`,
+					  d.`nama_guru`,
+					  c.`nama_materi`,
+					  a.`jumlah_ujian`,
+					  a.`persen_multiple_coice`,
+					  a.`persen_essay`,
+					  CASE
+						WHEN (f.`id_jawaban_siswa` IS NULL)
+						THEN 1
+						ELSE 2
+					  END AS status_ujian_multiple,
+					  CASE
+						WHEN (
+						  h.`id_jawaban_siswa_essay` IS NULL
+						)
+						THEN 1
+						ELSE 2
+					  END AS status_ujian_essay
+					FROM
+					  ujian AS a
+					  JOIN kelas AS b
+					  JOIN materi AS c
+					  JOIN guru AS d
+						ON a.`kelas_id` = b.`id_kelas`
+						AND a.`materi_id` = c.`id_materi`
+						AND a.`guru_id` = d.`id_guru`
+					  LEFT JOIN bank_soal AS e
+						ON a.`id_ujian` = e.`ujian_id`
+					  LEFT JOIN jawaban_siswa AS f
+						ON e.`id_bank_soal` = f.`no_soal`
+					  LEFT JOIN bank_soal_essay AS g
+						ON a.`id_ujian` = g.`ujian_id`
+					  LEFT JOIN jawaban_siswa_essay AS h
+						ON g.`id_bank_soal_essay` = h.`no_soal`
+					GROUP BY a.`id_ujian`
+					ORDER BY a.`nama_ujian` ASC

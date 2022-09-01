@@ -1,0 +1,191 @@
+<style type='text/css'>
+    .jawaban-class {
+        border:1px solid #000; 
+        width:20px;
+        height:20px; 
+    }
+    .span-item {
+        width:95%;
+        position:top;
+        margin-top:0px;
+        margin-left:20px;
+        float:right;
+        display: inline-block;
+        overflow:scroll;
+    }
+    .class-multiple {
+        font-size:20px;
+        color:red;
+    }
+    .colom-multiple-c {
+        /* border: 1px solid #000; */
+        background: rgb(218, 240, 209);
+		margin-bottom: 10px;
+		border-radius:10;
+		padding:10px;
+
+    }
+    </style>
+    <?php
+    foreach($query1 as $item){
+        if($item["status_soal"] == 0){
+            echo "
+                <input type='hidden' class='mode-form-soal' value='1' hidden>
+                <input type='hidden' name='nisn' value='$_SESSION[nisn]' hidden>
+                <input type='hidden' name='nik' value='$_SESSION[nik]' hidden>
+                <input type='hidden' name='token' value='$_SESSION[token]' hidden>
+                <input type='hidden' name='no_soal' class='no_soal' value='$item[id_bank_soal]' hidden>
+                <div class='row'>
+                    <div class='col-md-12 colom-multiple-c'>
+                        $item[soal]
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-1 colom-multiple-c'>
+                        <input type='radio' name='jawaban' class='jawaban-class' id='jawaban' value='a' required> A 
+                    </div>
+                    <div class='col-md-11 colom-multiple-c'>
+                        $item[a]
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-1 colom-multiple-c'>
+                        <input type='radio' name='jawaban' class='jawaban-class' id='jawaban' value='b' required> 
+                        B
+                    </div>
+                    <div class='col-md-11 colom-multiple-c'>
+                        $item[b]
+                    </div>
+                </div>
+    
+                <div class='row'>
+                    <div class='col-md-1 colom-multiple-c'>
+                        <input type='radio' name='jawaban' class='jawaban-class' id='jawaban' value='c' required> 
+                        C
+                    </div>
+                    <div class='col-md-11 colom-multiple-c'>
+                        $item[c]
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-1 colom-multiple-c'>
+                    <input type='radio' name='jawaban' class='jawaban-class' id='jawaban' value='d' required> 
+                    D
+                    </div>
+                    <div class='col-md-11 colom-multiple-c'>
+                        $item[d]
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-1 colom-multiple-c'>
+                        <input type='radio' name='jawaban' class='jawaban-class' id='jawaban' value='e' required> 
+                        E
+                    </div>
+                    <div class='col-md-11 colom-multiple-c'>
+                        $item[e]
+                    </div>
+                </div>
+                <button type='submit' class='btn btn-primary btn-submit'>simpan</button>
+            ";
+        } else {
+            echo "
+            
+                <input type='hidden' name='nisn' value='$_SESSION[nisn]' hidden>
+                <input type='hidden' name='nik' value='$_SESSION[nik]' hidden>
+                <input type='hidden' name='token' value='$_SESSION[token]' hidden>
+                <input type='hidden' name='no_soal' value='$item[id_bank_soal]' hidden>
+                <div class='row'>
+                    <div class='col-md-12 colom-multiple-c'>
+                        $item[soal]
+                    </div>
+                </div>
+            ";
+            echo "
+                <div class='row'>
+                    <div class='col-md-1 colom-multiple-c'>
+            ";
+            if($item["jawaban"] == "a"){
+                echo "<input type='radio' checked name='jawaban' class='jawaban-class' id='jawaban' value='a' required> . A ";
+            } else {
+                echo "<input type='radio' name='jawaban' class='jawaban-class' id='jawaban' value='a' required> . A ";
+            }
+            echo "
+                </div>
+                <div class='col-md-11 colom-multiple-c'>
+                    $item[a]
+                </div>
+            </div>
+            ";
+    
+            echo "
+                <div class='row'>
+                    <div class='col-md-1 colom-multiple-c'>
+            ";
+            if($item["jawaban"] == "b"){
+                echo "<input type='radio' checked name='jawaban' class='jawaban-class' id='jawaban' value='b' required> . B ";
+            } else {
+                echo "<input type='radio' name='jawaban' class='jawaban-class' id='jawaban' value='b' required> . B ";
+            }
+            echo "
+                </div>
+                <div class='col-md-11 colom-multiple-c'>
+                    $item[b]
+                </div>
+            </div>
+            ";
+    
+            echo "
+                <div class='row'>
+                    <div class='col-md-1 colom-multiple-c'>
+            ";
+            if($item["jawaban"] == "c"){
+                echo "<input type='radio' checked name='jawaban' class='jawaban-class' id='jawaban' value='c' required> . C ";
+            } else {
+                echo "<input type='radio' name='jawaban' class='jawaban-class' id='jawaban' value='c' required> . C ";
+            }
+            echo "
+                </div>
+                <div class='col-md-11 colom-multiple-c'>
+                    $item[c]
+                </div>
+            </div>
+            ";
+    
+            echo "
+                <div class='row'>
+                    <div class='col-md-1 colom-multiple-c'>
+            ";
+            if($item["jawaban"] == "d"){
+                echo "<input type='radio' checked name='jawaban' class='jawaban-class' id='jawaban' value='d' required> . D ";
+            } else {
+                echo "<input type='radio' name='jawaban' class='jawaban-class' id='jawaban' value='d' required> . D ";
+            }
+            echo "
+                </div>
+                <div class='col-md-11 colom-multiple-c'>
+                    $item[d]
+                </div>
+            </div>
+            ";
+    
+            echo "
+                <div class='row'>
+                    <div class='col-md-1 colom-multiple-c'>
+            ";
+            if($item["jawaban"] == "e"){
+                echo "<input type='radio' checked name='jawaban' class='jawaban-class' id='jawaban' value='e' required> . E";
+            } else {
+                echo "<input type='radio' name='jawaban' class='jawaban-class' id='jawaban' value='e' required> . E";
+            }
+            echo "
+                </div>
+                <div class='col-md-11 colom-multiple-c'>
+                    $item[e]
+                </div>
+            </div>
+            ";
+            echo "<button type='submit' class='btn btn-primary btn-submit'>simpan</button>";
+        }
+    
+    }
+    ?>
